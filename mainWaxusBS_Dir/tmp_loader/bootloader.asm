@@ -16,7 +16,7 @@ outputl:
 	jz .done
 	mov ah, 0x0E
 	mov bh, 0
-	int 0x80
+	int 0x10
 	jmp .do
 .done:
 	pop ax
@@ -36,14 +36,18 @@ startkernel:
 	mov ch, 0
 	mov cl, 2
 	mov dh, 0
-	mov dl, 0x00
+	mov dl, 0x80
 	mov bx, 0x1000
 	int 0x13
 
 	jc bootpanic
+	
+	
+
+	mov si, boot_msg
+	call outputl
 
 	jmp 0x1000
-
 
 
 
@@ -68,6 +72,7 @@ main:
 
 loading db "Booting into kernel...", 0x0A, 0x0D, 0x00
 err db "Error while loading OS...", 0x0A, 0x0D, 0x00
+boot_msg db "No errors. Booting into the kernel", 0x0A, 0x0D, 0x00
 
 times 510-($-$$) db 0
 dw 0xAA55

@@ -1,0 +1,7 @@
+Standard names totmbx (TOTMB eXtremely important)
+
+names for structures: PascalCase
+names for functions: camelCase
+names for variables: snake_case
+names for constants: CAPS
+names for labels: snake_case
